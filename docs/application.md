@@ -62,4 +62,4 @@ O arquivo `app.env` é root:root 0600, preservado nas reexecuções. Não é nec
 
 ## Resultado obtido e próximo passo
 
-Build Release, 6 testes existentes e 7 verificações HTTP do artefato publicado passaram na nuvem. Persistência após reinício manual comprovada. Código fonte C# permaneceu intacto. O próximo passo é executar o fluxo completo no Ubuntu com systemd, verificar reexecução, boot, falha controlada, acesso do host e gravar o vídeo.
+Build Release, 6 testes existentes e 7 verificações HTTP do artefato publicado passaram na nuvem. Persistência após reinício manual comprovada. Código fonte C# permaneceu intacto. O fluxo completo também passou em VM Ubuntu com systemd, incluindo reexecução, boot, recuperação após falha, persistência e acesso HTTP pelo host. Veja `evidence/ubuntu-vm/README.md`. Restam o vídeo e o aceite acadêmico da API.

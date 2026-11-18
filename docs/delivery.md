@@ -2,14 +2,16 @@
 
 Não atribuir nota de funcionamento a código não executado na VM. A tabela é uma avaliação de cobertura, não nota garantida.
 
-| Critério | Peso | Implementado | Falta comprovar |
+| Critério | Peso | Evidência técnica obtida | Pendência de entrega |
 |---|---:|---|---|
-| Infra: rede, DNS, IP | 2 | Bash, Netplan DHCP/estático, hostname, validação e backup | VM limpa, rede aplicada, DNS, reexecução |
-| Aplicação | 2 | API C# integrada, 6 testes e 7 verificações HTTP locais; bundle, variáveis e systemd | Deploy na VM e aceite de API (C# .NET 10/SQLite integrado e testado na nuvem) |
-| CPU/disco/memória e alertas | 2 | Métricas reais e alertas configuráveis; testes locais passaram | Evidência dentro da VM e logs dos três alertas |
-| Monitor tolerante a falhas | 1 | Unit com restart e teste de PID/NRestarts/amostra | Matar processo e observar recuperação real na VM |
-| Auditoria/execução | 1 | Logs com timestamp/resultado, journal persistente, rotação | Execuções privilegiadas e persistência após reboot |
-| Funcionamento completo | 2 | Orquestrador e coleta de evidências | Provisionamento do zero na VM, falha systemd, boot, vídeo |
+| Infra: rede, DNS, IP | 2 | VM limpa com Netplan estático aplicado, DNS/hostname e reexecução aprovados | Mostrar no vídeo |
+| Aplicação | 2 | Build/testes C#, dependências, variáveis, serviço, HTTP e SQLite aprovados | Aceite de API isolada pelo professor |
+| CPU/disco/memória e alertas | 2 | Amostras reais e três alertas simulados identificados, em logs da VM | Explicar limiares no vídeo |
+| Monitor tolerante a falhas | 1 | SIGKILL, PID novo, NRestarts incrementado e amostra recuperada | Mostrar/explicar a recuperação |
+| Auditoria/execução | 1 | Logs de execução, journal persistente e leitura do boot anterior aprovados | Mostrar no vídeo |
+| Funcionamento completo | 2 | Dois provisionamentos, API, falhas, reboot e relato SQLite preservado aprovados | Vídeo <=7 min e aceite acadêmico da aplicação |
+
+Os seis critérios têm implementação e evidência técnica, cobrindo os pesos 2+2+2+1+1+2. A nota é atribuída pelo professor; não equivale a garantia de 10/10. [Resultado completo da VM](../evidence/ubuntu-vm/README.md).
 
 ## Checklist final em VM limpa
 
@@ -40,3 +42,5 @@ Não atribuir nota de funcionamento a código não executado na VM. A tabela é 
 | 6:30–6:50 | Repositório, evidências, resultado e limitações |
 
 Não apresentar simulação de recurso como saturação real. Não afirmar que código foi validado apenas por mostrar arquivos de configuração. A gravação é um entregável pendente; nenhum vídeo foi produzido nesta sessão.
+
+Roteiro com falas e comandos: [docs/video.md](video.md). A gravação continua pendente; esse roteiro não constitui vídeo entregue.

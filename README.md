@@ -2,7 +2,7 @@
 
 Automação Bash para hospedar a **aplicação web de outra disciplina** em Ubuntu Server 24.04 LTS com systemd. O app React Native/Expo não é tratado como essa aplicação. Base elaborada a partir das páginas 35–37 do PDF CitizenTech fornecido pelo aluno.
 
-**Situação:** integração com [alertasp-csharp](https://github.com/enzoalmeiida/alertasp-csharp), API ASP.NET Core .NET 10 com SQLite, implementada. Os 10 testes de scripts, 6 testes da API e 7 verificações HTTP passaram nesta nuvem. Provisionamento completo, idempotência na VM, boot, recuperação systemd e vídeo ainda não comprovados. A aceitação de API isolada pelo professor continua pendente. Não é uma entrega validada para 10/10.
+**Situação:** integração com [alertasp-csharp](https://github.com/enzoalmeiida/alertasp-csharp), API ASP.NET Core .NET 10 com SQLite. **Validação completa em VM Ubuntu aprovada**: provisionamento duas vezes, rede, aplicação, monitoramento, recuperação após SIGKILL, reboot, SQLite e journal persistentes. Também passaram 11 testes locais dos scripts, 6 da API e 7 verificações HTTP. [Evidências e execução correspondente](evidence/ubuntu-vm/README.md). Faltam gravar o vídeo e confirmar com o professor a aceitação de API isolada; a nota depende da avaliação da disciplina.
 
 ## Plataforma escolhida
 
@@ -93,3 +93,19 @@ O primeiro comando funciona sem root e testa comportamento real do monitor, simu
 ## Validação em VM pelo GitHub Actions
 
 O workflow [Ubuntu VM validation](.github/workflows/validate.yml) cria uma VM QEMU Ubuntu isolada para testar provisionamento duas vezes, rede, serviços, falha, alertas e reboot. Consulte [docs/ci.md](docs/ci.md) e o resultado da execução correspondente ao commit: presença do workflow não significa que passou.
+
+## Organização da infraestrutura
+
+```mermaid
+flowchart LR
+    Cliente[Cliente na rede de laboratório] --> Rede[IP e DNS configurados por Netplan]
+    Rede --> API[API ASP.NET Core :8080]
+    Systemd[systemd: boot e recuperação] --> API
+    API --> Banco[(SQLite em /var/lib/alertasp)]
+    Systemd --> Monitor[Monitor Bash]
+    Recursos["/proc e df"] --> Monitor
+    Monitor --> Journal[journal persistente: amostras e alertas]
+    Provisionamento[Scripts de provisionamento] --> Auditoria[provision.log com rotação]
+```
+
+A API roda como `alertasp`; build usa `alertasp-build`; monitor usa usuário dinâmico. Dados persistentes ficam fora do diretório de código. [Roteiro de gravação com falas e comandos](docs/video.md).

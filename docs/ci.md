@@ -9,3 +9,11 @@ Dentro da VM, o teste configura IP estático, gateway e DNS a partir dos valores
 Saídas ficam no artifact `ubuntu-vm-evidence` e na branch `validation-results`, sob `runs/<run_id>/`. `STATUS.txt` identifica o commit testado, run e resultado; `raw/RESULT.txt` só aparece após o fluxo completo passar. Uma execução falha não é evidência de funcionamento. O relatório é gerado com GITHUB_TOKEN temporário e permissão contents:write; não é necessário cadastrar PAT.
 
 Não substituir o vídeo por logs de CI. O aluno ainda precisa demonstrar/explicar o provisionamento no vídeo <=7 minutos e confirmar com o professor a aceitação da API. Se Actions estiver desabilitado, a conta sem minutos disponíveis ou a política impedir escrita da branch de evidências, habilitar/ajustar nas configurações do GitHub. Não fornecer tokens em chat.
+
+## Falha encontrada e corrigida durante a validação
+
+A primeira VM completou a configuração estática de rede e o build, mas o compilador .NET deixou um processo filho ativo que havia herdado o descritor do `flock`. Isso bloqueava o provisionamento da API. A função `step` agora fecha o descritor 9 apenas no processo filho (`9>&-`), mantendo o bloqueio no provisionador. Um teste local verifica tanto a exclusão concorrente enquanto o pai está ativo quanto a liberação após o pai fechar o descritor, mesmo com um filho ainda rodando. Os relatórios de tentativas anteriores ficam preservados para auditoria.
+
+## Resultado validado
+
+A execução [44311927366](https://github.com/enzoalmeiida/alertasp-operatingsystems/actions/runs/44311927366) passou integralmente. O teste reinicia o convidado dentro do mesmo emulador e exige um boot ID novo; isso evita depender de reabrir o dispositivo KVM do runner para testar reboot. Cópias das evidências estão em `evidence/ubuntu-vm/`.

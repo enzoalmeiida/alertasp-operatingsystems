@@ -1,9 +1,9 @@
 # Escopo das evidências
 
-`local-tests.txt` registra a suíte Bash/monitoramento executada na máquina Debian 13 da nuvem. Simulações são explicitamente identificadas e a última amostra usa `/proc` e `df` reais. `csharp-tests.trx` e `csharp-validation.md` registram testes e validação da API real publicada.
+- `local-tests.txt`: 11 testes locais Bash/monitoramento, incluindo métricas reais e regressão do lock herdado por processos filhos.
+- `csharp-tests.trx` e `csharp-validation.md`: 6 testes C# e 7 verificações HTTP do artefato publicado, com SQLite temporário e reinício manual.
+- `ubuntu-vm/`: validação completa aprovada em VM Ubuntu 24.04 com systemd, a partir de imagem oficial verificada. Inclui dois provisionamentos, rede, aplicação, SIGKILL/recuperação, alertas, reboot, SQLite e journal persistentes. Consulte o README desse diretório para commit e run exatos.
 
-A aplicação C# foi identificada, compilada, publicada e exercitada por HTTP com SQLite temporário. Persistência após reinício manual comprovada. Não houve alterações no código fonte da API.
+A máquina de desenvolvimento na nuvem continua sendo Debian 13 com `tail` no PID 1. Os testes systemd foram executados na VM do GitHub Actions, não nesta máquina. As tentativas anteriores que falharam ficam preservadas na branch `validation-results`; não são contabilizadas como sucesso.
 
-Não executados nesta máquina: apt/provisionamento privilegiado, alterações de rede, deploy em systemd, testes de boot ou recuperação automática systemd. PID 1 é `tail`. A tentativa anterior de `systemd-analyze verify --man=no` não foi concluída porque `/run/systemd` é somente leitura. Portanto não há alegação de validação das units por esse comando.
-
-Não existe vídeo nesta entrega parcial. Execute o checklist `docs/delivery.md` na VM Ubuntu para produzir as evidências finais. Aceitação de API isolada pelo professor segue pendente.
+Código fonte C# preservado. A VM de CI é descartada ao terminar. Ainda faltam o aceite da API pelo professor e o vídeo. Não há gravação de vídeo produzida nesta sessão.
