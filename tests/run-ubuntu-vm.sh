@@ -29,11 +29,13 @@ ssh-keygen -q -t ed25519 -N '' -f "$state/key"
 printf 'instance-id: alertasp-ci\nlocal-hostname: alertasp-ci\n' > "$state/meta-data"
 cloud-localds "$state/seed.img" "$state/user-data" "$state/meta-data"
 accel=tcg
+cpu=max
 if [[ -e /dev/kvm ]]; then
     sudo setfacl -m "u:$(id -un):rw" /dev/kvm
     accel=kvm
+    cpu=host
 fi
-qemu-system-x86_64 -accel "$accel" -m 4096 -smp 2 -nographic -no-reboot \
+qemu-system-x86_64 -accel "$accel" -cpu "$cpu" -m 4096 -smp 2 -nographic -no-reboot \
     -drive "file=$state/disk.qcow2,if=virtio,format=qcow2" \
     -drive "file=$state/seed.img,if=virtio,format=raw" \
     -netdev user,id=net0,hostfwd=tcp:127.0.0.1:2222-:22,hostfwd=tcp:127.0.0.1:18080-:8080 \
@@ -67,7 +69,7 @@ curl --fail --silent --show-error http://127.0.0.1:18080/health
 remote 'sudo reboot' || true
 for ((i=0;i<30;i++)); do kill -0 "$qemu_pid" 2>/dev/null || break; sleep 1; done
 wait "$qemu_pid"
-qemu-system-x86_64 -accel "$accel" -m 4096 -smp 2 -nographic \
+qemu-system-x86_64 -accel "$accel" -cpu "$cpu" -m 4096 -smp 2 -nographic \
     -drive "file=$state/disk.qcow2,if=virtio,format=qcow2" \
     -drive "file=$state/seed.img,if=virtio,format=raw" \
     -netdev user,id=net0,hostfwd=tcp:127.0.0.1:2222-:22,hostfwd=tcp:127.0.0.1:18080-:8080 \

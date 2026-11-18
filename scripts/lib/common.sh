@@ -2,6 +2,7 @@
 set -Eeuo pipefail
 export PATH=/usr/sbin:/usr/bin:/sbin:/bin
 umask 027
+AUDIT_LOG=/var/log/alertasp/provision.log
 fail() { printf 'ERRO: %s\n' "$*" >&2; exit 1; }
 require_root() { [[ $EUID -eq 0 ]] || fail 'Execute com sudo na VM Ubuntu.'; }
 require_vm() {
@@ -33,14 +34,15 @@ audit_start() {
     trap 'rc=$?; trap - EXIT; if ((rc == 0)); then audit INFO sucesso; else audit ERROR "falha exit=$rc linha=$LINENO"; fi; exit "$rc"' EXIT
 }
 audit() {
-    printf '%s task=%s level=%s event=%s\n' "$(date -u +%FT%TZ)" "${AUDIT_TASK:-manual}" "$1" "$2" | tee -a /var/log/alertasp/provision.log
+    printf '%s task=%s level=%s event=%s\n' "$(date -u +%FT%TZ)" "${AUDIT_TASK:-manual}" "$1" "$2" | tee -a "$AUDIT_LOG"
 }
 step() {
     local label=$1; shift
     audit INFO "$label:inicio"
     # Apenas operações sem segredos passam por esta função.
     local rc=0
-    "$@" >> /var/log/alertasp/provision.log 2>&1 || rc=$?
+    # Compiler servers may outlive this command; never pass the lock to children.
+    "$@" 9>&- >> "$AUDIT_LOG" 2>&1 || rc=$?
     if ((rc)); then audit ERROR "$label:exit=$rc"; return "$rc"; fi
     audit INFO "$label:sucesso"
 }

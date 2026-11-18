@@ -37,4 +37,18 @@ out=$(MONITOR_CONFIG=config/monitor.conf.example bash scripts/monitor.sh --once)
 for metric in cpu memory disk; do grep -Eq "metric=$metric usage_pct=[0-9]+ threshold_pct=" <<< "$out"; done
 printf '%s\n' "$out"
 ok real-linux-sample
+# A long-lived compiler child must not retain the provisioning flock.
+(
+    source scripts/lib/common.sh
+    AUDIT_LOG="$tmp/audit.log"
+    exec 9>"$tmp/lock"
+    flock -n 9
+    if flock -n "$tmp/lock" true; then exit 1; fi
+    step spawn sh -c 'sleep 30 >/dev/null 2>&1 & echo $! > "$1"' sh "$tmp/child-pid"
+    child=$(cat "$tmp/child-pid")
+    trap 'kill "$child" 2>/dev/null || true' EXIT
+    exec 9>&-
+    flock -n "$tmp/lock" true
+)
+ok child-does-not-inherit-provision-lock
 printf 'Resultado: %s testes passaram. Provisionamento/systemd/HTTP na VM não executados.\n' "$passed"
