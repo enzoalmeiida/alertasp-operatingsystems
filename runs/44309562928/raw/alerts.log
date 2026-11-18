@@ -1,0 +1,3 @@
+2026-11-18T13:14:18Z source=simulation level=ALERT event=threshold_exceeded metric=cpu usage_pct=100 threshold_pct=85
+2026-11-18T13:14:18Z source=simulation level=ALERT event=threshold_exceeded metric=memory usage_pct=100 threshold_pct=85
+2026-11-18T13:14:18Z source=simulation level=ALERT event=threshold_exceeded metric=disk usage_pct=100 threshold_pct=90
