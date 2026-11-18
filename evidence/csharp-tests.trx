@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="c6c53521-4a5c-4eba-b081-424f79245be4" name="@cb2ff5cf551e 2026-11-18 02:54:02" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-11-18T02:54:02.2714138+00:00" queuing="2026-11-18T02:54:02.2714139+00:00" start="2026-11-18T02:54:00.3627401+00:00" finish="2026-11-18T02:54:02.9691637+00:00" />
+  <TestSettings name="default" id="dcfda518-59fc-4d48-b420-d19b001dc3e6">
+    <Deployment runDeploymentRoot="_cb2ff5cf551e_2026-11-18_02_54_02" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="bd7d26ba-e770-424c-89a3-06e375a3f737" testId="30d1e1db-cc26-b7e7-45f1-533639925f62" testName="Alertasp.Tests.FloodReportServiceTests.CreateAsync_SavesReportWithInitialStatusAndTimestamps" computerName="cb2ff5cf551e" duration="00:00:00.0108796" startTime="2026-11-18T02:54:00.9955624+00:00" endTime="2026-11-18T02:54:00.9956363+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bd7d26ba-e770-424c-89a3-06e375a3f737" />
+    <UnitTestResult executionId="e2c9e330-ff90-47c8-a037-5c4477b41523" testId="0058b069-03d8-d663-064c-5a5345a371a9" testName="Alertasp.Tests.FloodReportServiceTests.ChangeStatusAsync_ReturnsNullWhenReportDoesNotExist" computerName="cb2ff5cf551e" duration="00:00:00.0014938" startTime="2026-11-18T02:54:00.9959100+00:00" endTime="2026-11-18T02:54:00.9959819+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e2c9e330-ff90-47c8-a037-5c4477b41523" />
+    <UnitTestResult executionId="d3625c29-060e-4355-a42c-fa02c73b0671" testId="eef2a49d-ff95-8a2a-5f26-256b49e0b287" testName="Alertasp.Tests.ReportsApiIntegrationTests.ReportsFlow_WritesFiltersUpdatesAndSurvivesRestart" computerName="cb2ff5cf551e" duration="00:00:00.7603237" startTime="2026-11-18T02:54:02.1466538+00:00" endTime="2026-11-18T02:54:02.9100222+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d3625c29-060e-4355-a42c-fa02c73b0671" />
+    <UnitTestResult executionId="a1fefa1a-07d1-4f63-a5e2-6268ca0bac8c" testId="141f292f-6490-90a9-6abe-9e0d5c21975d" testName="Alertasp.Tests.ReportsApiIntegrationTests.Create_ReturnsBadRequestForInvalidCoordinatesAndFutureObservation" computerName="cb2ff5cf551e" duration="00:00:01.1749468" startTime="2026-11-18T02:54:00.9667685+00:00" endTime="2026-11-18T02:54:02.1460733+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a1fefa1a-07d1-4f63-a5e2-6268ca0bac8c" />
+    <UnitTestResult executionId="705be441-e433-41b2-b2eb-049d9083fdcd" testId="4eb8a4fb-a8ef-26d0-6cf6-3d32086760c0" testName="Alertasp.Tests.FloodReportServiceTests.FloodReport_RejectsCoordinatesOutsideGeographicRange" computerName="cb2ff5cf551e" duration="00:00:00.0052870" startTime="2026-11-18T02:54:00.9653976+00:00" endTime="2026-11-18T02:54:00.9772619+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="705be441-e433-41b2-b2eb-049d9083fdcd" />
+    <UnitTestResult executionId="78a65f57-38aa-4da1-bcf2-38ab6331cb61" testId="7f0a4a12-e0d8-5259-a8c0-0f64f7f5f944" testName="Alertasp.Tests.FloodReportServiceTests.FloodReport_RejectsObservationInTheFuture" computerName="cb2ff5cf551e" duration="00:00:00.0001847" startTime="2026-11-18T02:54:00.9948481+00:00" endTime="2026-11-18T02:54:00.9950020+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="78a65f57-38aa-4da1-bcf2-38ab6331cb61" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Alertasp.Tests.ReportsApiIntegrationTests.ReportsFlow_WritesFiltersUpdatesAndSurvivesRestart" storage="/workspace/alertasp-csharp/tests/alertasp.tests/bin/release/net10.0/alertasp.tests.dll" id="eef2a49d-ff95-8a2a-5f26-256b49e0b287">
+      <Execution id="d3625c29-060e-4355-a42c-fa02c73b0671" />
+      <TestMethod codeBase="/workspace/alertasp-csharp/tests/Alertasp.Tests/bin/Release/net10.0/Alertasp.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Alertasp.Tests.ReportsApiIntegrationTests" name="ReportsFlow_WritesFiltersUpdatesAndSurvivesRestart" />
+    </UnitTest>
+    <UnitTest name="Alertasp.Tests.FloodReportServiceTests.CreateAsync_SavesReportWithInitialStatusAndTimestamps" storage="/workspace/alertasp-csharp/tests/alertasp.tests/bin/release/net10.0/alertasp.tests.dll" id="30d1e1db-cc26-b7e7-45f1-533639925f62">
+      <Execution id="bd7d26ba-e770-424c-89a3-06e375a3f737" />
+      <TestMethod codeBase="/workspace/alertasp-csharp/tests/Alertasp.Tests/bin/Release/net10.0/Alertasp.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Alertasp.Tests.FloodReportServiceTests" name="CreateAsync_SavesReportWithInitialStatusAndTimestamps" />
+    </UnitTest>
+    <UnitTest name="Alertasp.Tests.ReportsApiIntegrationTests.Create_ReturnsBadRequestForInvalidCoordinatesAndFutureObservation" storage="/workspace/alertasp-csharp/tests/alertasp.tests/bin/release/net10.0/alertasp.tests.dll" id="141f292f-6490-90a9-6abe-9e0d5c21975d">
+      <Execution id="a1fefa1a-07d1-4f63-a5e2-6268ca0bac8c" />
+      <TestMethod codeBase="/workspace/alertasp-csharp/tests/Alertasp.Tests/bin/Release/net10.0/Alertasp.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Alertasp.Tests.ReportsApiIntegrationTests" name="Create_ReturnsBadRequestForInvalidCoordinatesAndFutureObservation" />
+    </UnitTest>
+    <UnitTest name="Alertasp.Tests.FloodReportServiceTests.FloodReport_RejectsObservationInTheFuture" storage="/workspace/alertasp-csharp/tests/alertasp.tests/bin/release/net10.0/alertasp.tests.dll" id="7f0a4a12-e0d8-5259-a8c0-0f64f7f5f944">
+      <Execution id="78a65f57-38aa-4da1-bcf2-38ab6331cb61" />
+      <TestMethod codeBase="/workspace/alertasp-csharp/tests/Alertasp.Tests/bin/Release/net10.0/Alertasp.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Alertasp.Tests.FloodReportServiceTests" name="FloodReport_RejectsObservationInTheFuture" />
+    </UnitTest>
+    <UnitTest name="Alertasp.Tests.FloodReportServiceTests.FloodReport_RejectsCoordinatesOutsideGeographicRange" storage="/workspace/alertasp-csharp/tests/alertasp.tests/bin/release/net10.0/alertasp.tests.dll" id="4eb8a4fb-a8ef-26d0-6cf6-3d32086760c0">
+      <Execution id="705be441-e433-41b2-b2eb-049d9083fdcd" />
+      <TestMethod codeBase="/workspace/alertasp-csharp/tests/Alertasp.Tests/bin/Release/net10.0/Alertasp.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Alertasp.Tests.FloodReportServiceTests" name="FloodReport_RejectsCoordinatesOutsideGeographicRange" />
+    </UnitTest>
+    <UnitTest name="Alertasp.Tests.FloodReportServiceTests.ChangeStatusAsync_ReturnsNullWhenReportDoesNotExist" storage="/workspace/alertasp-csharp/tests/alertasp.tests/bin/release/net10.0/alertasp.tests.dll" id="0058b069-03d8-d663-064c-5a5345a371a9">
+      <Execution id="e2c9e330-ff90-47c8-a037-5c4477b41523" />
+      <TestMethod codeBase="/workspace/alertasp-csharp/tests/Alertasp.Tests/bin/Release/net10.0/Alertasp.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="Alertasp.Tests.FloodReportServiceTests" name="ChangeStatusAsync_ReturnsNullWhenReportDoesNotExist" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="30d1e1db-cc26-b7e7-45f1-533639925f62" executionId="bd7d26ba-e770-424c-89a3-06e375a3f737" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0058b069-03d8-d663-064c-5a5345a371a9" executionId="e2c9e330-ff90-47c8-a037-5c4477b41523" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="eef2a49d-ff95-8a2a-5f26-256b49e0b287" executionId="d3625c29-060e-4355-a42c-fa02c73b0671" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="141f292f-6490-90a9-6abe-9e0d5c21975d" executionId="a1fefa1a-07d1-4f63-a5e2-6268ca0bac8c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4eb8a4fb-a8ef-26d0-6cf6-3d32086760c0" executionId="705be441-e433-41b2-b2eb-049d9083fdcd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7f0a4a12-e0d8-5259-a8c0-0f64f7f5f944" executionId="78a65f57-38aa-4da1-bcf2-38ab6331cb61" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="6" executed="6" passed="6" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v4.0.1+0f7d528729 (64-bit .NET 10.0.0)
+[xUnit.net 00:00:00.09]   Discovering: Alertasp.Tests
+[xUnit.net 00:00:00.13]   Discovered:  Alertasp.Tests
+[xUnit.net 00:00:00.16]   Starting:    Alertasp.Tests
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA journal_mode = 'wal';
+info: Microsoft.EntityFrameworkCore.Migrations[20411]
+      Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE IF NOT EXISTS "__EFMigrationsLock" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK___EFMigrationsLock" PRIMARY KEY,
+          "Timestamp" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-11-18 02:54:01.810047+00:00');
+      SELECT changes();
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+          "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+          "ProductVersion" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";
+info: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20261108045943_InitialCreate'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "FloodReports" (
+          "Id" TEXT NOT NULL CONSTRAINT "PK_FloodReports" PRIMARY KEY,
+          "RoadName" TEXT NOT NULL,
+          "District" TEXT NOT NULL,
+          "Latitude" TEXT NOT NULL,
+          "Longitude" TEXT NOT NULL,
+          "ObservedAt" INTEGER NOT NULL,
+          "Source" TEXT NOT NULL,
+          "Status" TEXT NOT NULL,
+          "CreatedAt" INTEGER NOT NULL,
+          "UpdatedAt" INTEGER NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_FloodReports_District" ON "FloodReports" ("District");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_FloodReports_ObservedAt" ON "FloodReports" ("ObservedAt");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_FloodReports_Status" ON "FloodReports" ("Status");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20261108045943_InitialCreate', '10.0.14');
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DELETE FROM "__EFMigrationsLock";
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /workspace/alertasp-csharp/src/Alertasp.Api
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost/api/reports - application/json;+charset=utf-8 146
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Alertasp.Api.Controllers.ReportsController.Create (Alertasp.Api)'
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+      Route matched with {action = "Create", controller = "Reports"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[Alertasp.Api.Application.Contracts.ReportResponse]] Create(Alertasp.Api.Application.Contracts.CreateReportRequest, System.Threading.CancellationToken) on controller Alertasp.Api.Controllers.ReportsController (Alertasp.Api).
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+      Executed action Alertasp.Api.Controllers.ReportsController.Create (Alertasp.Api) in 57.4831ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Alertasp.Api.Controllers.ReportsController.Create (Alertasp.Api)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost/api/reports - 400 - application/json;+charset=utf-8 132.9442ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost/api/reports - application/json;+charset=utf-8 147
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Alertasp.Api.Controllers.ReportsController.Create (Alertasp.Api)'
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+      Route matched with {action = "Create", controller = "Reports"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[Alertasp.Api.Application.Contracts.ReportResponse]] Create(Alertasp.Api.Application.Contracts.CreateReportRequest, System.Threading.CancellationToken) on controller Alertasp.Api.Controllers.ReportsController (Alertasp.Api).
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+      Executed action Alertasp.Api.Controllers.ReportsController.Create (Alertasp.Api) in 3.7163ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Alertasp.Api.Controllers.ReportsController.Create (Alertasp.Api)'
+info: Alertasp.Api.Infrastructure.ApiExceptionHandler[0]
+      Solicitação rejeitada por uma regra de validação.
+info: Microsoft.AspNetCore.Http.HttpResults.ProblemHttpResult[1]
+      Setting HTTP status code 400.
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost/api/reports - 400 - application/problem+json 17.3846ms
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA journal_mode = 'wal';
+info: Microsoft.EntityFrameworkCore.Migrations[20411]
+      Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE IF NOT EXISTS "__EFMigrationsLock" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK___EFMigrationsLock" PRIMARY KEY,
+          "Timestamp" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-11-18 02:54:02.2057435+00:00');
+      SELECT changes();
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+          "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+          "ProductVersion" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";
+info: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20261108045943_InitialCreate'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "FloodReports" (
+          "Id" TEXT NOT NULL CONSTRAINT "PK_FloodReports" PRIMARY KEY,
+          "RoadName" TEXT NOT NULL,
+          "District" TEXT NOT NULL,
+          "Latitude" TEXT NOT NULL,
+          "Longitude" TEXT NOT NULL,
+          "ObservedAt" INTEGER NOT NULL,
+          "Source" TEXT NOT NULL,
+          "Status" TEXT NOT NULL,
+          "CreatedAt" INTEGER NOT NULL,
+          "UpdatedAt" INTEGER NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_FloodReports_District" ON "FloodReports" ("District");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_FloodReports_ObservedAt" ON "FloodReports" ("ObservedAt");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_FloodReports_Status" ON "FloodReports" ("Status");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20261108045943_InitialCreate', '10.0.14');
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DELETE FROM "__EFMigrationsLock";
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /workspace/alertasp-csharp/src/Alertasp.Api
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost/swagger/v1/swagger.json - - -
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost/swagger/v1/swagger.json - 200 - application/json;charset=utf-8 97.0645ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost/api/reports - application/json;+charset=utf-8 163
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Alertasp.Api.Controllers.ReportsController.Create (Alertasp.Api)'
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+      Route matched with {action = "Create", controller = "Reports"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[Alertasp.Api.Application.Contracts.ReportResponse]] Create(Alertasp.Api.Application.Contracts.CreateReportRequest, System.Threading.CancellationToken) on controller Alertasp.Api.Controllers.ReportsController (Alertasp.Api).
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Int64), @p2='?' (Size = 2), @p3='?' (DbType = Decimal), @p4='?' (DbType = Decimal), @p5='?' (DbType = Int64), @p6='?' (Size = 12), @p7='?' (Size = 13), @p8='?' (Size = 8), @p9='?' (DbType = Int64)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "FloodReports" ("Id", "CreatedAt", "District", "Latitude", "Longitude", "ObservedAt", "RoadName", "Source", "Status", "UpdatedAt")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing CreatedAtActionResult, writing value of type 'Alertasp.Api.Application.Contracts.ReportResponse'.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+      Executed action Alertasp.Api.Controllers.ReportsController.Create (Alertasp.Api) in 215.0268ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Alertasp.Api.Controllers.ReportsController.Create (Alertasp.Api)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost/api/reports - 201 - application/json;+charset=utf-8 224.4877ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost/api/reports?district=S%C3%A9&amp;status=Reported - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Alertasp.Api.Controllers.ReportsController.Search (Alertasp.Api)'
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+      Route matched with {action = "Search", controller = "Reports"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IReadOnlyList`1[Alertasp.Api.Application.Contracts.ReportResponse]]] Search(System.String, System.Nullable`1[Alertasp.Api.Domain.ReportStatus], System.Threading.CancellationToken) on controller Alertasp.Api.Controllers.ReportsController (Alertasp.Api).
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@Trim='?' (Size = 2), @status_Value='?' (Size = 8)], CommandType='Text', CommandTimeout='30']
+      SELECT "f"."Id", "f"."CreatedAt", "f"."District", "f"."Latitude", "f"."Longitude", "f"."ObservedAt", "f"."RoadName", "f"."Source", "f"."Status", "f"."UpdatedAt"
+      FROM "FloodReports" AS "f"
+      WHERE "f"."District" = @Trim AND "f"."Status" = @status_Value
+      ORDER BY "f"."ObservedAt" DESC, "f"."CreatedAt" DESC
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing OkObjectResult, writing value of type 'Alertasp.Api.Application.Contracts.ReportResponse[]'.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+      Executed action Alertasp.Api.Controllers.ReportsController.Search (Alertasp.Api) in 210.101ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Alertasp.Api.Controllers.ReportsController.Search (Alertasp.Api)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost/api/reports?district=S%C3%A9&amp;status=Reported - 200 - application/json;+charset=utf-8 218.3596ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost/api/reports?district=Pinheiros&amp;status=Reported - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Alertasp.Api.Controllers.ReportsController.Search (Alertasp.Api)'
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+      Route matched with {action = "Search", controller = "Reports"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IReadOnlyList`1[Alertasp.Api.Application.Contracts.ReportResponse]]] Search(System.String, System.Nullable`1[Alertasp.Api.Domain.ReportStatus], System.Threading.CancellationToken) on controller Alertasp.Api.Controllers.ReportsController (Alertasp.Api).
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@Trim='?' (Size = 9), @status_Value='?' (Size = 8)], CommandType='Text', CommandTimeout='30']
+      SELECT "f"."Id", "f"."CreatedAt", "f"."District", "f"."Latitude", "f"."Longitude", "f"."ObservedAt", "f"."RoadName", "f"."Source", "f"."Status", "f"."UpdatedAt"
+      FROM "FloodReports" AS "f"
+      WHERE "f"."District" = @Trim AND "f"."Status" = @status_Value
+      ORDER BY "f"."ObservedAt" DESC, "f"."CreatedAt" DESC
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing OkObjectResult, writing value of type 'Alertasp.Api.Application.Contracts.ReportResponse[]'.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+      Executed action Alertasp.Api.Controllers.ReportsController.Search (Alertasp.Api) in 8.3611ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Alertasp.Api.Controllers.ReportsController.Search (Alertasp.Api)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost/api/reports?district=Pinheiros&amp;status=Reported - 200 - application/json;+charset=utf-8 8.7582ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 PATCH http://localhost/api/reports/d488c2f4-10cc-4878-bb3e-506151c2ed50/status - application/json;+charset=utf-8 22
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Alertasp.Api.Controllers.ReportsController.ChangeStatus (Alertasp.Api)'
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+      Route matched with {action = "ChangeStatus", controller = "Reports"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[Alertasp.Api.Application.Contracts.ReportResponse]] ChangeStatus(System.Guid, Alertasp.Api.Application.Contracts.ChangeReportStatusRequest, System.Threading.CancellationToken) on controller Alertasp.Api.Controllers.ReportsController (Alertasp.Api).
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT "f"."Id", "f"."CreatedAt", "f"."District", "f"."Latitude", "f"."Longitude", "f"."ObservedAt", "f"."RoadName", "f"."Source", "f"."Status", "f"."UpdatedAt"
+      FROM "FloodReports" AS "f"
+      WHERE "f"."Id" = @id
+      LIMIT 2
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (Size = 9), @p1='?' (DbType = Int64)], CommandType='Text', CommandTimeout='30']
+      UPDATE "FloodReports" SET "Status" = @p0, "UpdatedAt" = @p1
+      WHERE "Id" = @p2
+      RETURNING 1;
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing OkObjectResult, writing value of type 'Alertasp.Api.Application.Contracts.ReportResponse'.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+      Executed action Alertasp.Api.Controllers.ReportsController.ChangeStatus (Alertasp.Api) in 22.4673ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Alertasp.Api.Controllers.ReportsController.ChangeStatus (Alertasp.Api)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 PATCH http://localhost/api/reports/d488c2f4-10cc-4878-bb3e-506151c2ed50/status - 200 - application/json;+charset=utf-8 27.5667ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost/api/reports/00000000-0000-0000-0000-000000000000 - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Alertasp.Api.Controllers.ReportsController.GetById (Alertasp.Api)'
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+      Route matched with {action = "GetById", controller = "Reports"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[Alertasp.Api.Application.Contracts.ReportResponse]] GetById(System.Guid, System.Threading.CancellationToken) on controller Alertasp.Api.Controllers.ReportsController (Alertasp.Api).
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT "f"."Id", "f"."CreatedAt", "f"."District", "f"."Latitude", "f"."Longitude", "f"."ObservedAt", "f"."RoadName", "f"."Source", "f"."Status", "f"."UpdatedAt"
+      FROM "FloodReports" AS "f"
+      WHERE "f"."Id" = @id
+      LIMIT 2
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+      Executed action Alertasp.Api.Controllers.ReportsController.GetById (Alertasp.Api) in 4.1731ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Alertasp.Api.Controllers.ReportsController.GetById (Alertasp.Api)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost/api/reports/00000000-0000-0000-0000-000000000000 - 404 - application/json;+charset=utf-8 9.4244ms
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+info: Microsoft.EntityFrameworkCore.Migrations[20411]
+      Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-11-18 02:54:02.8796568+00:00');
+      SELECT changes();
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+          "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+          "ProductVersion" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";
+info: Microsoft.EntityFrameworkCore.Migrations[20405]
+      No migrations were applied. The database is already up to date.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DELETE FROM "__EFMigrationsLock";
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /workspace/alertasp-csharp/src/Alertasp.Api
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost/api/reports/d488c2f4-10cc-4878-bb3e-506151c2ed50 - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Alertasp.Api.Controllers.ReportsController.GetById (Alertasp.Api)'
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+      Route matched with {action = "GetById", controller = "Reports"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[Alertasp.Api.Application.Contracts.ReportResponse]] GetById(System.Guid, System.Threading.CancellationToken) on controller Alertasp.Api.Controllers.ReportsController (Alertasp.Api).
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT "f"."Id", "f"."CreatedAt", "f"."District", "f"."Latitude", "f"."Longitude", "f"."ObservedAt", "f"."RoadName", "f"."Source", "f"."Status", "f"."UpdatedAt"
+      FROM "FloodReports" AS "f"
+      WHERE "f"."Id" = @id
+      LIMIT 2
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing OkObjectResult, writing value of type 'Alertasp.Api.Application.Contracts.ReportResponse'.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+      Executed action Alertasp.Api.Controllers.ReportsController.GetById (Alertasp.Api) in 2.7953ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Alertasp.Api.Controllers.ReportsController.GetById (Alertasp.Api)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost/api/reports/d488c2f4-10cc-4878-bb3e-506151c2ed50 - 200 - application/json;+charset=utf-8 10.1331ms
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+[xUnit.net 00:00:02.13]   Finished:    Alertasp.Tests
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

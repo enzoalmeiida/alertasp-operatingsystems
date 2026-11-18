@@ -1,0 +1,54 @@
+name: Ubuntu VM validation
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ubuntu-vm-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  vm:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Local checks
+        run: |
+          bash tests/test-local.sh
+          shellcheck -x -P scripts scripts/*.sh scripts/lib/*.sh tests/*.sh
+      - name: Provision and validate isolated Ubuntu VM
+        run: bash tests/run-ubuntu-vm.sh
+      - name: Save evidence artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ubuntu-vm-evidence
+          path: evidence/raw/
+      - name: Publish validation report branch
+        if: always()
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+          RUN_ID: ${{ github.run_id }}
+          RUN_OUTCOME: ${{ job.status }}
+        run: |
+          mkdir -p /tmp/alertasp-report
+          cp -R evidence/raw /tmp/alertasp-report/ 2>/dev/null || true
+          printf 'source_commit=%s\nrun_id=%s\nresult=%s\n' "$SOURCE_SHA" "$RUN_ID" "$RUN_OUTCOME" > /tmp/alertasp-report/STATUS.txt
+          git fetch origin validation-results || true
+          if git show-ref --verify --quiet refs/remotes/origin/validation-results; then
+            git checkout -B validation-results origin/validation-results
+          else
+            git checkout --orphan validation-results
+            git rm -rf .
+          fi
+          mkdir -p runs/"$RUN_ID"
+          cp -R /tmp/alertasp-report/. runs/"$RUN_ID"/
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f runs/"$RUN_ID"
+          git commit -m "Record VM validation for $SOURCE_SHA"
+          git push origin validation-results

@@ -1,0 +1,5 @@
+config/*.local
+*.env
+!*.env.example
+evidence/raw/
+__pycache__/

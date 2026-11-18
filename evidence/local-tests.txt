@@ -1,0 +1,14 @@
+PASS bash-syntax
+PASS valid-network
+PASS rejects-outside-gateway
+PASS rejects-network-injection
+PASS alerts-at-all-thresholds
+PASS below-thresholds
+PASS rejects-invalid-simulation
+PASS rejects-invalid-config
+PASS config-is-not-executed
+2026-11-18T03:01:34Z source=real level=INFO event=sample metric=cpu usage_pct=0 threshold_pct=85
+2026-11-18T03:01:34Z source=real level=INFO event=sample metric=memory usage_pct=3 threshold_pct=85
+2026-11-18T03:01:34Z source=real level=INFO event=sample metric=disk usage_pct=3 threshold_pct=90
+PASS real-linux-sample
+Resultado: 10 testes passaram. Provisionamento/systemd/HTTP na VM não executados.

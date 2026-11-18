@@ -1,0 +1,7 @@
+# Percentuais inteiros de 1 a 100; alerta quando consumo >= limiar.
+CPU_THRESHOLD=85
+MEM_THRESHOLD=85
+DISK_THRESHOLD=90
+# CPU: amostra de 1 segundo. Repetição: 30 segundos após cada amostra.
+INTERVAL=30
+DISK_PATH=/

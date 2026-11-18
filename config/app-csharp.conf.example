@@ -1,0 +1,4 @@
+ARTIFACT_DIR=/var/lib/alertasp-build/bundle
+RUNTIME=dotnet
+PORT=8080
+HEALTH_PATH=/health

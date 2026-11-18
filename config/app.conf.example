@@ -1,0 +1,8 @@
+# O bundle deve conter bin/start executável, em primeiro plano.
+# O artefato deve ser previamente construído pela disciplina responsável.
+ARTIFACT_DIR=/caminho/absoluto/para/bundle
+# Opções: dotnet (SDK 10.0.100), node (Ubuntu Node 18), java (OpenJDK 21), python, none.
+# Verifique compatibilidade com o projeto real antes de escolher.
+RUNTIME=none
+PORT=8080
+HEALTH_PATH=/

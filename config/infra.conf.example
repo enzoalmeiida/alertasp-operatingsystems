@@ -1,0 +1,10 @@
+# Copie para infra.local. Não é um script shell; não use aspas.
+HOSTNAME=alertasp
+# DHCP é o padrão; preencha explicitamente a interface da VM (ip -br link).
+INTERFACE=enp0s3
+MODE=dhcp
+# Static: preencha os três campos abaixo com dados reais da sua rede.
+ADDRESS=
+GATEWAY=
+# DNS IPv4 separados por vírgula. Vazio em DHCP usa DNS fornecido pela rede.
+DNS=
