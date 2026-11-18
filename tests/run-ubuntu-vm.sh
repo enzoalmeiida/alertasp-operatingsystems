@@ -5,6 +5,7 @@ cd -- "$(dirname -- "$0")/.."
 repo=$PWD
 state=$(mktemp -d)
 mkdir -p evidence/raw
+exec > >(tee "$repo/evidence/raw/host-validation.log") 2>&1
 qemu_pid=''
 cleanup() {
     if [[ -n $qemu_pid ]]; then kill "$qemu_pid" 2>/dev/null || true; wait "$qemu_pid" 2>/dev/null || true; fi
@@ -69,6 +70,8 @@ curl --fail --silent --show-error http://127.0.0.1:18080/health
 remote 'sudo reboot' || true
 for ((i=0;i<30;i++)); do kill -0 "$qemu_pid" 2>/dev/null || break; sleep 1; done
 wait "$qemu_pid"
+# Hosted runners may reset the KVM device ACL while the first VM is running.
+if [[ $accel == kvm ]]; then sudo setfacl -m "u:$(id -un):rw" /dev/kvm; fi
 qemu-system-x86_64 -accel "$accel" -cpu "$cpu" -m 4096 -smp 2 -nographic \
     -drive "file=$state/disk.qcow2,if=virtio,format=qcow2" \
     -drive "file=$state/seed.img,if=virtio,format=raw" \
