@@ -1,0 +1,10 @@
+enabled
+active
+enabled
+active
+PASS report-survives-reprovision-failure-and-vm-reboot
+2026-11-18T13:26:22Z source=real level=INFO event=sample metric=disk usage_pct=17 threshold_pct=90
+2026-11-18T13:25:39Z source=real level=INFO event=sample metric=disk usage_pct=17 threshold_pct=90
+2026-11-18T13:25:50Z source=real level=INFO event=sample metric=disk usage_pct=17 threshold_pct=90
+2026-11-18T13:25:58Z source=real level=INFO event=sample metric=disk usage_pct=17 threshold_pct=90
+PASS boot-services-and-persistent-journal
