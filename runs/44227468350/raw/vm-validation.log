@@ -1,0 +1,129 @@
+2026-11-18T03:11:36Z task=adopt-network level=INFO event=inicio
+2026-11-18T03:11:36Z task=adopt-network level=INFO event=backup=/var/backups/alertasp-netplan.C7EQBv;rede_em_memoria_preservada_execute_01_infra_sem_reiniciar
+2026-11-18T03:11:36Z task=adopt-network level=INFO event=sucesso
+2026-11-18T03:11:36Z task=infra level=INFO event=inicio
+2026-11-18T03:11:36Z task=infra level=INFO event=apt-update:inicio
+2026-11-18T03:11:45Z task=infra level=INFO event=apt-update:sucesso
+2026-11-18T03:11:45Z task=infra level=INFO event=apt-upgrade:inicio
+2026-11-18T03:12:10Z task=infra level=INFO event=apt-upgrade:sucesso
+2026-11-18T03:12:10Z task=infra level=INFO event=packages:inicio
+2026-11-18T03:12:11Z task=infra level=INFO event=packages:sucesso
+2026-11-18T03:12:11Z task=infra level=INFO event=hostname:inicio
+2026-11-18T03:12:11Z task=infra level=INFO event=hostname:sucesso
+2026-11-18T03:12:11Z task=infra level=INFO event=netplan-generate:inicio
+2026-11-18T03:12:11Z task=infra level=INFO event=netplan-generate:sucesso
+2026-11-18T03:12:11Z task=infra level=INFO event=netplan-apply:inicio
+2026-11-18T03:12:11Z task=infra level=INFO event=netplan-apply:sucesso
+2026-11-18T03:12:11Z task=infra level=INFO event=network-address:inicio
+2026-11-18T03:12:11Z task=infra level=INFO event=network-address:sucesso
+2026-11-18T03:12:11Z task=infra level=INFO event=network-route:inicio
+2026-11-18T03:12:11Z task=infra level=INFO event=network-route:sucesso
+2026-11-18T03:12:11Z task=infra level=INFO event=network-dns:inicio
+2026-11-18T03:12:11Z task=infra level=INFO event=network-dns:sucesso
+2026-11-18T03:12:11Z task=infra level=INFO event=sucesso
+2026-11-18T03:12:11Z task=build-csharp level=INFO event=inicio
+2026-11-18T03:12:11Z task=build-csharp level=INFO event=build:inicio
+2026-11-18T03:12:40Z task=build-csharp level=INFO event=build:sucesso
+2026-11-18T03:12:40Z task=build-csharp level=INFO event=sucesso
+ERRO: Outro provisionamento está em execução.
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for dbus (1.14.10-4ubuntu4.1) ...
+Processing triggers for debianutils (5.17build1) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.12) ...
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+ /etc/needrestart/restart.d/systemd-manager
+ systemctl restart cron.service multipathd.service packagekit.service polkit.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service systemd-timesyncd.service systemd-udevd.service udisks2.service
+
+Service restarts being deferred:
+ systemctl restart ModemManager.service
+ /etc/needrestart/restart.d/dbus.service
+ systemctl restart getty@tty1.service
+ systemctl restart serial-getty@ttyS0.service
+ systemctl restart systemd-logind.service
+ systemctl restart unattended-upgrades.service
+
+No containers need to be restarted.
+
+User sessions running outdated binaries:
+ ubuntu @ session #6: bash[1402,1441], sshd[1350]
+ ubuntu @ user manager service: systemd[1015]
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-11-18T03:12:10Z task=infra level=INFO event=apt-upgrade:sucesso
+2026-11-18T03:12:10Z task=infra level=INFO event=packages:inicio
+Reading package lists...
+Building dependency tree...
+Reading state information...
+netplan.io is already the newest version (1.1.2-8ubuntu1~24.04.3).
+netplan.io set to manually installed.
+curl is already the newest version (8.5.0-2ubuntu10.16).
+curl set to manually installed.
+ca-certificates is already the newest version (20260816ubuntu0.24.04.2).
+ca-certificates set to manually installed.
+python3 is already the newest version (3.12.3-0ubuntu2.1).
+python3 set to manually installed.
+rsync is already the newest version (3.2.7-1ubuntu1.5).
+rsync set to manually installed.
+logrotate is already the newest version (3.21.0-2build1).
+logrotate set to manually installed.
+git is already the newest version (1:2.43.0-1ubuntu7.4).
+git set to manually installed.
+libicu74 is already the newest version (74.2-1ubuntu3.1).
+libicu74 set to manually installed.
+libssl3t64 is already the newest version (3.0.13-0ubuntu3.16).
+libssl3t64 set to manually installed.
+zlib1g is already the newest version (1:1.3.dfsg-3.1ubuntu2.3).
+zlib1g set to manually installed.
+libgcc-s1 is already the newest version (14.2.0-4ubuntu2~24.04.1).
+libgcc-s1 set to manually installed.
+libstdc++6 is already the newest version (14.2.0-4ubuntu2~24.04.1).
+libstdc++6 set to manually installed.
+0 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
+2026-11-18T03:12:11Z task=infra level=INFO event=packages:sucesso
+2026-11-18T03:12:11Z task=infra level=INFO event=hostname:inicio
+2026-11-18T03:12:11Z task=infra level=INFO event=hostname:sucesso
+2026-11-18T03:12:11Z task=infra level=INFO event=netplan-generate:inicio
+2026-11-18T03:12:11Z task=infra level=INFO event=netplan-generate:sucesso
+2026-11-18T03:12:11Z task=infra level=INFO event=netplan-apply:inicio
+2026-11-18T03:12:11Z task=infra level=INFO event=netplan-apply:sucesso
+2026-11-18T03:12:11Z task=infra level=INFO event=network-address:inicio
+ens3             UP             10.0.2.15/24 fe80::5054:ff:fe12:3456/64 
+2026-11-18T03:12:11Z task=infra level=INFO event=network-address:sucesso
+2026-11-18T03:12:11Z task=infra level=INFO event=network-route:inicio
+default via 10.0.2.2 dev ens3 proto static 
+10.0.2.0/24 dev ens3 proto kernel scope link src 10.0.2.15 
+2026-11-18T03:12:11Z task=infra level=INFO event=network-route:sucesso
+2026-11-18T03:12:11Z task=infra level=INFO event=network-dns:inicio
+Link 2 (ens3)
+    Current Scopes: DNS
+         Protocols: +DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+       DNS Servers: 10.0.2.3
+2026-11-18T03:12:11Z task=infra level=INFO event=network-dns:sucesso
+2026-11-18T03:12:11Z task=infra level=INFO event=sucesso
+2026-11-18T03:12:11Z task=build-csharp level=INFO event=inicio
+2026-11-18T03:12:11Z task=build-csharp level=INFO event=build:inicio
+/var/lib/alertasp-build/dotnet.stage.MKUO1W/sdk.tar.gz: OK
+10.0.100 [/var/lib/alertasp-build/dotnet.stage.MKUO1W/sdk/sdk]
+Cloning into '/var/lib/alertasp-build/source'...
+HEAD is now at cffd7a7 Add API integration tests and update delivery evidence
+  Determining projects to restore...
+  Restored /var/lib/alertasp-build/source/tests/Alertasp.Tests/Alertasp.Tests.csproj (in 7.2 sec).
+  Restored /var/lib/alertasp-build/source/src/Alertasp.Api/Alertasp.Api.csproj (in 7.2 sec).
+  Alertasp.Api -> /var/lib/alertasp-build/source/src/Alertasp.Api/bin/Release/net10.0/Alertasp.Api.dll
+  Alertasp.Tests -> /var/lib/alertasp-build/source/tests/Alertasp.Tests/bin/Release/net10.0/Alertasp.Tests.dll
+Test run for /var/lib/alertasp-build/source/tests/Alertasp.Tests/bin/Release/net10.0/Alertasp.Tests.dll (.NETCoreApp,Version=v10.0)
+VSTest version 18.0.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+Results File: /var/lib/alertasp-build/bundle.stage.yuixh3/tests/api-tests.trx
+
+Passed!  - Failed:     0, Passed:     6, Skipped:     0, Total:     6, Duration: 2 s - Alertasp.Tests.dll (net10.0)
+  Alertasp.Api -> /var/lib/alertasp-build/bundle.stage.yuixh3/bundle/
+Bundle publicado: /var/lib/alertasp-build/bundle
+2026-11-18T03:12:40Z task=build-csharp level=INFO event=build:sucesso
+2026-11-18T03:12:40Z task=build-csharp level=INFO event=sucesso
+-- No entries --
