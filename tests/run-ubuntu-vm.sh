@@ -36,7 +36,7 @@ if [[ -e /dev/kvm ]]; then
     accel=kvm
     cpu=host
 fi
-qemu-system-x86_64 -accel "$accel" -cpu "$cpu" -m 4096 -smp 2 -nographic -no-reboot \
+qemu-system-x86_64 -accel "$accel" -cpu "$cpu" -m 4096 -smp 2 -nographic \
     -drive "file=$state/disk.qcow2,if=virtio,format=qcow2" \
     -drive "file=$state/seed.img,if=virtio,format=raw" \
     -netdev user,id=net0,hostfwd=tcp:127.0.0.1:2222-:22,hostfwd=tcp:127.0.0.1:18080-:8080 \
@@ -66,19 +66,19 @@ scp -i "$state/key" -P 2222 -o "UserKnownHostsFile=$state/known_hosts" ubuntu@12
 [[ ! -f $state/evidence.tar.gz ]] || tar -xzf "$state/evidence.tar.gz" -C evidence
 ((result == 0)) || exit "$result"
 curl --fail --silent --show-error http://127.0.0.1:18080/health
-# QEMU -no-reboot encerra no reboot. Reiniciar o mesmo disco preserva os dados.
+# Reboot the guest in the same emulator, just as on a persistent VM.
+# A changed kernel boot ID proves we did not reconnect to the old boot.
+old_boot=$(remote 'cat /proc/sys/kernel/random/boot_id')
 remote 'sudo reboot' || true
-for ((i=0;i<30;i++)); do kill -0 "$qemu_pid" 2>/dev/null || break; sleep 1; done
-wait "$qemu_pid"
-# Hosted runners may reset the KVM device ACL while the first VM is running.
-if [[ $accel == kvm ]]; then sudo setfacl -m "u:$(id -un):rw" /dev/kvm; fi
-qemu-system-x86_64 -accel "$accel" -cpu "$cpu" -m 4096 -smp 2 -nographic \
-    -drive "file=$state/disk.qcow2,if=virtio,format=qcow2" \
-    -drive "file=$state/seed.img,if=virtio,format=raw" \
-    -netdev user,id=net0,hostfwd=tcp:127.0.0.1:2222-:22,hostfwd=tcp:127.0.0.1:18080-:8080 \
-    -device virtio-net-pci,netdev=net0 >> "$repo/evidence/raw/serial.log" 2>&1 &
-qemu_pid=$!
-wait_ssh
+rebooted=0
+for ((i=0;i<180;i++)); do
+    new_boot=$(remote 'cat /proc/sys/kernel/random/boot_id' 2>/dev/null || true)
+    if [[ -n $new_boot && $new_boot != "$old_boot" ]]; then rebooted=1; break; fi
+    kill -0 "$qemu_pid" || exit 1
+    sleep 2
+done
+((rebooted)) || { echo 'Guest did not complete a new boot.' >&2; exit 1; }
+printf 'PASS changed-kernel-boot-id before=%s after=%s\n' "$old_boot" "$new_boot"
 remote 'sudo systemctl is-system-running --wait' || true
 remote 'cd ~/os && sudo bash tests/verify-reboot.sh'
 curl --fail --silent --show-error http://127.0.0.1:18080/health
