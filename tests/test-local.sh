@@ -44,6 +44,8 @@ ok real-linux-sample
     exec 9>"$tmp/lock"
     flock -n 9
     if flock -n "$tmp/lock" true; then exit 1; fi
+    # Variables must expand inside the child shell, not the test runner.
+    # shellcheck disable=SC2016
     step spawn sh -c 'sleep 30 >/dev/null 2>&1 & echo $! > "$1"' sh "$tmp/child-pid"
     child=$(cat "$tmp/child-pid")
     trap 'kill "$child" 2>/dev/null || true' EXIT
