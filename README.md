@@ -1,8 +1,8 @@
-# AlertaSP — Operating Systems / FIAP
+# AlertaSP — Operating Systems
 
-Automação Bash para hospedar a **aplicação web de outra disciplina** em Ubuntu Server 24.04 LTS com systemd. O app React Native/Expo não é tratado como essa aplicação. Base elaborada a partir das páginas 35–37 do PDF CitizenTech fornecido pelo aluno.
+Infraestrutura Linux automatizada para hospedar a aplicação web do AlertaSP, desenvolvida na disciplina de C# Software Development. O projeto usa scripts Bash para provisionar uma VM Ubuntu Server 24.04 LTS, configurar rede e serviços, executar a API ASP.NET Core e monitorar CPU, memória e disco.
 
-**Situação:** integração com [alertasp-csharp](https://github.com/enzoalmeiida/alertasp-csharp), API ASP.NET Core .NET 10 com SQLite. **Validação completa em VM Ubuntu aprovada**: provisionamento duas vezes, rede, aplicação, monitoramento, recuperação após SIGKILL, reboot, SQLite e journal persistentes. Também passaram 11 testes locais dos scripts, 6 da API e 7 verificações HTTP. [Evidências e execução correspondente](evidence/ubuntu-vm/README.md). 
+O aplicativo React Native/Expo do AlertaSP é um projeto separado. A aplicação hospedada nesta entrega é a API web do repositório [alertasp-csharp](https://github.com/enzoalmeiida/alertasp-csharp).
 
 ## Integrantes
 
@@ -14,108 +14,186 @@ Automação Bash para hospedar a **aplicação web de outra disciplina** em Ubun
 
 [Assista à demonstração do AlertaSP](https://youtu.be/TDRk2UIh-TM)
 
-## Plataforma escolhida
+## Ambiente
 
-VM dedicada Ubuntu Server 24.04 LTS **x86_64**, sugestão inicial: 2 vCPU, 4 GB RAM e 25 GB disco. Pode ser VirtualBox, VMware ou VM equivalente. Esses recursos são uma sugestão, não uma exigência extraída do PDF. Console da VM e sudo são necessários. Não executar os provisionadores no host pessoal, em container ou na máquina de produção.
+- Ubuntu Server 24.04 LTS x86_64
+- Bash e systemd
+- .NET SDK 10.0.100
+- ASP.NET Core na porta `8080`
+- SQLite em `/var/lib/alertasp/alertasp.db`
+- Netplan para configuração de rede
+- Journal do systemd e `/var/log/alertasp/provision.log` para registros
 
-A máquina de desenvolvimento na nuvem usa Debian 13 com `tail` no PID 1. Permite editar e executar testes locais; não substitui a demonstração da VM. [Resultado real dos testes](evidence/local-tests.txt).
+Uma VM com 2 vCPU, 4 GB de RAM e 25 GB de disco é suficiente como configuração inicial de laboratório. Os scripts de provisionamento exigem acesso ao console da VM e privilégios de `sudo`.
 
-## Fluxo da aplicação C# selecionada
+## Aplicação hospedada
 
-A API vem da disciplina C# Software Development, commit `cffd7a757982642824f7acba1ace1af8c4c0e18e`. SDK 10.0.100, SQLite incorporado, porta 8080 e `/health`; migrations aplicadas no startup. Sem servidor de banco, senha ou serviço externo. Confirme com o professor a aceitação de API isolada: Swagger não é um dashboard cidadão.
+O provisionamento usa o commit `cffd7a757982642824f7acba1ace1af8c4c0e18e` do repositório [alertasp-csharp](https://github.com/enzoalmeiida/alertasp-csharp). O script instala o SDK .NET com verificação SHA-512, obtém o código, executa os testes, publica a API e configura sua execução como serviço Linux.
 
-1. Preparar VM e rede conforme [guia da VM](docs/vm.md).
-2. Copiar configurações e preencher a interface/IP/DNS reais:
+A API responde em `http://IP_DA_VM:8080/health`. As migrations do SQLite são aplicadas na inicialização. O banco permanece em `/var/lib/alertasp/` durante novos provisionamentos.
+
+## Provisionamento
+
+No console de uma VM Ubuntu Server 24.04 LTS dedicada:
 
 ```bash
+git clone https://github.com/enzoalmeiida/alertasp-operatingsystems.git
+cd alertasp-operatingsystems
+
 cp config/infra.conf.example config/infra.local
 cp config/monitor.conf.example config/monitor.local
-# Edite os arquivos. Formato CHAVE=valor, sem aspas.
 ```
 
-3. No console da VM dedicada, executar:
+Preencha `config/infra.local` com a interface de rede, o endereçamento e os servidores DNS da VM. As configurações de monitoramento podem ser ajustadas em `config/monitor.local`. Os arquivos usam o formato `CHAVE=valor`, sem aspas.
+
+Execute:
 
 ```bash
 sudo ./scripts/00-adopt-network.sh --console-confirmed
 sudo ./scripts/provision-csharp.sh config/infra.local config/monitor.local --apply-network
 ```
 
-O segundo script configura a infra, instala SDK com verificação SHA-512, baixa o commit fixado, executa os 6 testes e publica a API usando usuário de build sem privilégios. Instala o serviço web e o monitor; aguarda HTTP e primeira amostra. O SDK é usado também para hospedar a aplicação nesta base didática (ocupa mais disco que instalar apenas runtime).
+O primeiro script prepara a adoção da configuração de rede e preserva um backup. O segundo provisiona a infraestrutura, instala e publica a aplicação, configura os serviços systemd e aguarda a resposta HTTP e a primeira amostra do monitor.
 
-Execute o segundo comando duas vezes na VM para comprovar idempotência. O bundle existente é reutilizado após checksums; usuário, diretórios e serviços convergem. Há reinício deliberado da API a cada deploy e pacotes podem receber novas atualizações. O banco em `/var/lib/alertasp/alertasp.db` não é substituído pelo deploy. Não é atualização sem indisponibilidade.
-
-[Integração, build independente, variáveis e smoke test](docs/application.md). O fluxo genérico `provision.sh` permanece disponível para outros bundles, com `config/app.local` explícito.
-
-## Scripts e serviços
-
-| Arquivo | Responsabilidade |
-|---|---|
-| `00-adopt-network.sh` | Backup verificado e transferência do Netplan da VM dedicada |
-| `01-infra.sh` | apt update/upgrade, pacotes, hostname, hosts, Netplan IPv4 DHCP/estático, DNS e logrotate |
-| `install-dotnet.sh` / `prepare-csharp.sh` | SDK verificado, checkout fixado, testes e publicação sem alterar código C# |
-| `provision-csharp.sh` | Infra + build sem root + deploy da API + monitor |
-| `02-app.sh` | Runtime selecionado, usuário sem login, artefato, variáveis, serviço e healthcheck HTTP |
-| `03-monitor.sh` | Instala monitor, configuração, journal persistente limitado e serviço |
-| `monitor.sh` | Mede CPU, memória disponível e ocupação de disco; gera amostras e alertas |
-| `04-failure-test.sh` | Mata o processo principal, exige novo PID, aumento de NRestarts e recuperação funcional |
-| `05-evidence.sh` | Coleta estado, HTTP, monitoramento e log dos scripts sem ler arquivos de segredos |
-
-`alertasp-app`: `Restart=on-failure`, atraso de 5s, dependência de `network-online.target`. Isso ordena a inicialização de rede, não comprova disponibilidade de banco ou Internet. O launcher precisa usar `exec` e ficar em primeiro plano. Usuário `alertasp`, sem privilégios; código somente leitura; escrita em `/var/lib/alertasp`. Recursos extras devem ser liberados somente quando a aplicação real exigir.
-
-`alertasp-monitor`: `Restart=always`, atraso de 5s, usuário dinâmico, sem escrita no sistema. Falhas repetidas são limitadas a 10 inicializações em 60s para impedir loops descontrolados. Depois de corrigir a causa: `sudo systemctl reset-failed NOME` e `sudo systemctl start NOME`. `enable` inicia no boot. Uma parada administrativa via `systemctl stop` não aciona reinício automático.
-
-## Monitoramento, variáveis e alertas
-
-Limiares padrão documentados: CPU >=85%, memória >=85%, disco >=90%; amostra de CPU em 1s; espera de 30s entre ciclos. São valores iniciais para laboratório, ajustáveis em `config/monitor.local`. Memória usa `(MemTotal-MemAvailable)/MemTotal`; CPU usa diferenças de `/proc/stat` descontando idle/iowait e sem duplicar guest; disco usa `df -P` sobre `DISK_PATH`. Não exige atingir esses limites consumindo recursos de verdade.
-
-Cada métrica gera timestamp UTC, origem, nível, evento, consumo e limiar. `level=ALERT` significa limiar atingido; entrega do alerta é o journal local, sem email/Slack. O monitor avisa em cada amostra acima do limite, sem deduplicação. Comandos:
+O comando de provisionamento pode ser executado novamente:
 
 ```bash
-./scripts/monitor.sh --once
-./scripts/monitor.sh --simulate 100 100 100
+sudo ./scripts/provision-csharp.sh config/infra.local config/monitor.local --apply-network
+```
+
+A segunda execução reutiliza componentes já instalados e preserva o banco de dados. O serviço da API é reiniciado durante o deploy.
+
+As etapas de configuração de rede e recuperação estão descritas em [docs/vm.md](docs/vm.md). A integração com a aplicação C# está documentada em [docs/application.md](docs/application.md).
+
+## Scripts
+
+| Script | Função |
+|---|---|
+| `scripts/00-adopt-network.sh` | Prepara a configuração de rede com backup |
+| `scripts/01-infra.sh` | Configura pacotes, hostname, IP, DNS, Netplan e rotação de logs |
+| `scripts/install-dotnet.sh` | Instala o SDK .NET com verificação SHA-512 |
+| `scripts/prepare-csharp.sh` | Obtém o código C#, executa testes e publica a API |
+| `scripts/provision-csharp.sh` | Orquestra o provisionamento completo |
+| `scripts/02-app.sh` | Configura usuário, diretórios, variáveis e serviço da aplicação |
+| `scripts/03-monitor.sh` | Instala o monitor e seu serviço systemd |
+| `scripts/monitor.sh` | Mede CPU, memória e disco e gera alertas |
+| `scripts/04-failure-test.sh` | Simula falha de processo e testa a recuperação |
+| `scripts/05-evidence.sh` | Coleta estado dos serviços, HTTP, monitoramento e logs |
+
+## Serviços systemd
+
+A aplicação é executada pelo serviço `alertasp-app`, com usuário próprio sem privilégios. O serviço inicia com o sistema e usa `Restart=on-failure` para se recuperar de falhas de processo.
+
+O monitor é executado pelo serviço `alertasp-monitor`. Ele inicia automaticamente, realiza medições periódicas e usa `Restart=always` para recuperar o processo após uma falha. Uma parada administrativa com `systemctl stop` não aciona reinício automático.
+
+Comandos de administração:
+
+```bash
+sudo systemctl status alertasp-app
+sudo systemctl status alertasp-monitor
+
+sudo systemctl restart alertasp-app
+sudo systemctl restart alertasp-monitor
+
+sudo journalctl -u alertasp-app --since '-10 minutes' --no-pager
 sudo journalctl -u alertasp-monitor --since '-10 minutes' --no-pager
 ```
 
-Simulação é marcada `source=simulation`, não representa carga real. Para registrar simulação no journal sem alterar o serviço:
+Os arquivos de serviço estão em `systemd/`.
+
+## Monitoramento e alertas
+
+O monitor registra a utilização de CPU, memória RAM e disco. Os limites iniciais são:
+
+| Recurso | Limite de alerta |
+|---|---:|
+| CPU | 85% |
+| Memória | 85% |
+| Disco | 90% |
+
+Esses valores são configuráveis em `config/monitor.local`. O monitor aguarda 30 segundos entre ciclos e registra cada amostra no journal. Quando uma medição atinge o limite, registra um evento `level=ALERT`.
+
+Para executar uma medição:
+
+```bash
+./scripts/monitor.sh --once
+```
+
+Para demonstrar os três alertas sem consumir recursos reais da VM:
+
+```bash
+./scripts/monitor.sh --simulate 100 100 100
+```
+
+A simulação é identificada nos registros por `source=simulation`. Para registrá-la no journal:
 
 ```bash
 sudo /usr/local/lib/alertasp/monitor.sh --simulate 100 100 100 | systemd-cat -t alertasp-simulation
 journalctl -t alertasp-simulation --no-pager
 ```
 
-Scripts privilegiados registram início, etapas, sucesso/erro e código de saída em `/var/log/alertasp/provision.log`; execução concorrente é bloqueada com flock. Não usam `set -x`, `eval` nem executam configuração como shell. Saídas de operações sem segredos são registradas. Logrotate mantém oito arquivos semanais comprimidos. Journal: persistente, até 200 MB e 14 dias. São logs operacionais, não uma trilha inviolável de segurança.
+Os alertas são entregues pelo journal local. O projeto não configura envio por email ou mensageria.
 
-Segredos ficam somente em `/etc/alertasp/app.env`, root:root 0600, nunca no Git, vídeo ou linha de comando. `PORT` e `HOST` são gerenciados separadamente. A aplicação precisa respeitar essas variáveis ou adaptar seu launcher. Não registrar tokens no stdout da aplicação. Não há domínio público, certificado TLS nem firewall imposto: usar rede de laboratório; exposição pública requer configuração adicional.
+## Logs e auditoria
 
-## Testes e evidências
+Os scripts de provisionamento registram início, etapas executadas, resultado, erros e horário em:
+
+```text
+/var/log/alertasp/provision.log
+```
+
+O log tem rotação configurada pelo `logrotate`. As execuções dos serviços, as amostras e os alertas do monitor podem ser consultados com `journalctl`. O journal é configurado para persistir após reinicializações, com limite de armazenamento.
+
+Arquivos de segredos não são publicados no repositório. As variáveis privadas da aplicação ficam em `/etc/alertasp/app.env`, com acesso restrito ao usuário `root`.
+
+## Testes de falha e recuperação
+
+Com os serviços ativos na VM, execute:
 
 ```bash
-./tests/test-local.sh
 sudo ./scripts/04-failure-test.sh alertasp-monitor
 sudo ./scripts/04-failure-test.sh alertasp-app
+```
+
+O teste interrompe o processo principal com `SIGKILL` e verifica se o systemd cria um novo processo, incrementa o contador de reinicializações e restaura o funcionamento do serviço.
+
+Para coletar o estado do ambiente após os testes:
+
+```bash
 sudo ./scripts/05-evidence.sh /tmp/alertasp-evidence-01.txt
 ```
 
-O primeiro comando funciona sem root e testa comportamento real do monitor, simulação e validações. Os demais exigem VM e aplicação funcionais. A API já passou também nos testes descritos em [evidence/csharp-validation.md](evidence/csharp-validation.md). Revise dados e copie evidências aprovadas para `evidence/`; nunca publique arquivos de segredos. Valide reinício da VM, acesso HTTP de outra máquina e uma operação representativa da aplicação (consultar um alerta, por exemplo): HTTP 200 sozinho não comprova a solução inteira.
+O teste local dos scripts pode ser executado sem `root`:
 
-[Rubrica, pendências e roteiro de vídeo de 6min50s](docs/delivery.md). [Troubleshooting e recuperação da rede](docs/vm.md).
-
-## Validação em VM pelo GitHub Actions
-
-O workflow [Ubuntu VM validation](.github/workflows/validate.yml) cria uma VM QEMU Ubuntu isolada para testar provisionamento duas vezes, rede, serviços, falha, alertas e reboot. Consulte [docs/ci.md](docs/ci.md) e o resultado da execução correspondente ao commit: presença do workflow não significa que passou.
-
-## Organização da infraestrutura
-
-```mermaid
-flowchart LR
-    Cliente[Cliente na rede de laboratório] --> Rede[IP e DNS configurados por Netplan]
-    Rede --> API[API ASP.NET Core :8080]
-    Systemd[systemd: boot e recuperação] --> API
-    API --> Banco[(SQLite em /var/lib/alertasp)]
-    Systemd --> Monitor[Monitor Bash]
-    Recursos["/proc e df"] --> Monitor
-    Monitor --> Journal[journal persistente: amostras e alertas]
-    Provisionamento[Scripts de provisionamento] --> Auditoria[provision.log com rotação]
+```bash
+./tests/test-local.sh
 ```
 
-A API roda como `alertasp`; build usa `alertasp-build`; monitor usa usuário dinâmico. Dados persistentes ficam fora do diretório de código. [Roteiro de gravação com falas e comandos](docs/video.md).
+## Evidências
+
+As evidências técnicas da execução em VM Ubuntu estão organizadas em [evidence/ubuntu-vm/](evidence/ubuntu-vm/). As capturas de tela da demonstração ficam em `evidence/ubuntu-vm/prints/`.
+
+O workflow [Ubuntu VM validation](.github/workflows/validate.yml) executou o provisionamento duas vezes em uma VM QEMU Ubuntu e verificou rede, aplicação, SQLite, monitoramento, alertas, recuperação dos serviços e persistência após reboot. [Consulte a execução do GitHub Actions](https://github.com/enzoalmeiida/alertasp-operatingsystems/actions/runs/44311927366).
+
+Também foram executados 11 testes locais dos scripts, 6 testes da API e 7 verificações HTTP. Os resultados estão em [evidence/local-tests.txt](evidence/local-tests.txt), [evidence/csharp-validation.md](evidence/csharp-validation.md) e [evidence/ubuntu-vm/README.md](evidence/ubuntu-vm/README.md).
+
+## Estrutura
+
+```text
+.
+├── .github/workflows/       # Validação automatizada em VM Ubuntu
+├── config/                  # Exemplos de configuração
+├── docs/                    # Guias de VM, aplicação, CI e demonstração
+├── evidence/                # Resultados e evidências técnicas
+├── scripts/                 # Provisionamento, monitoramento e testes de falha
+├── systemd/                 # Unidades dos serviços
+└── tests/                   # Testes locais dos scripts
+```
+
+## Documentação complementar
+
+- [Preparação da VM e recuperação de rede](docs/vm.md)
+- [Integração da aplicação C#](docs/application.md)
+- [Validação no GitHub Actions](docs/ci.md)
+- [Roteiro da demonstração](docs/video.md)
+- [Rubrica e entrega](docs/delivery.md)
