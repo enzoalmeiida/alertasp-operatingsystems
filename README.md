@@ -2,7 +2,17 @@
 
 Automação Bash para hospedar a **aplicação web de outra disciplina** em Ubuntu Server 24.04 LTS com systemd. O app React Native/Expo não é tratado como essa aplicação. Base elaborada a partir das páginas 35–37 do PDF CitizenTech fornecido pelo aluno.
 
-**Situação:** integração com [alertasp-csharp](https://github.com/enzoalmeiida/alertasp-csharp), API ASP.NET Core .NET 10 com SQLite. **Validação completa em VM Ubuntu aprovada**: provisionamento duas vezes, rede, aplicação, monitoramento, recuperação após SIGKILL, reboot, SQLite e journal persistentes. Também passaram 11 testes locais dos scripts, 6 da API e 7 verificações HTTP. [Evidências e execução correspondente](evidence/ubuntu-vm/README.md). Faltam gravar o vídeo e confirmar com o professor a aceitação de API isolada; a nota depende da avaliação da disciplina.
+**Situação:** integração com [alertasp-csharp](https://github.com/enzoalmeiida/alertasp-csharp), API ASP.NET Core .NET 10 com SQLite. **Validação completa em VM Ubuntu aprovada**: provisionamento duas vezes, rede, aplicação, monitoramento, recuperação após SIGKILL, reboot, SQLite e journal persistentes. Também passaram 11 testes locais dos scripts, 6 da API e 7 verificações HTTP. [Evidências e execução correspondente](evidence/ubuntu-vm/README.md). 
+
+## Integrantes
+
+- Enzo Almeida — RM556900
+- Gabriel Mello — RM554421
+- Guilherme Moreira — RM557290
+
+## Vídeo demonstrativo
+
+[Assista à demonstração do AlertaSP](https://youtu.be/TDRk2UIh-TM)
 
 ## Plataforma escolhida
 
