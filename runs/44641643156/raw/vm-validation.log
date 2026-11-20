@@ -1,0 +1,146 @@
+2026-11-20T00:00:20Z task=adopt-network level=INFO event=inicio
+2026-11-20T00:00:20Z task=adopt-network level=INFO event=backup=/var/backups/alertasp-netplan.9xLsS6;rede_em_memoria_preservada_execute_01_infra_sem_reiniciar
+2026-11-20T00:00:20Z task=adopt-network level=INFO event=sucesso
+2026-11-20T00:00:20Z task=infra level=INFO event=inicio
+2026-11-20T00:00:20Z task=infra level=INFO event=apt-update:inicio
+2026-11-20T00:00:29Z task=infra level=INFO event=apt-update:sucesso
+2026-11-20T00:00:29Z task=infra level=INFO event=apt-upgrade:inicio
+2026-11-20T00:01:22Z task=infra level=INFO event=apt-upgrade:sucesso
+2026-11-20T00:01:22Z task=infra level=INFO event=packages:inicio
+2026-11-20T00:01:22Z task=infra level=INFO event=packages:sucesso
+2026-11-20T00:01:22Z task=infra level=INFO event=hostname:inicio
+2026-11-20T00:01:23Z task=infra level=INFO event=hostname:sucesso
+2026-11-20T00:01:23Z task=infra level=INFO event=netplan-generate:inicio
+2026-11-20T00:01:23Z task=infra level=INFO event=netplan-generate:sucesso
+2026-11-20T00:01:23Z task=infra level=INFO event=netplan-apply:inicio
+2026-11-20T00:01:23Z task=infra level=INFO event=netplan-apply:sucesso
+2026-11-20T00:01:23Z task=infra level=INFO event=network-address:inicio
+2026-11-20T00:01:23Z task=infra level=INFO event=network-address:sucesso
+2026-11-20T00:01:23Z task=infra level=INFO event=network-route:inicio
+2026-11-20T00:01:23Z task=infra level=INFO event=network-route:sucesso
+2026-11-20T00:01:23Z task=infra level=INFO event=network-dns:inicio
+2026-11-20T00:01:23Z task=infra level=INFO event=network-dns:sucesso
+2026-11-20T00:01:23Z task=infra level=INFO event=sucesso
+2026-11-20T00:01:23Z task=build-csharp level=INFO event=inicio
+2026-11-20T00:01:23Z task=build-csharp level=INFO event=build:inicio
+2026-11-20T00:01:52Z task=build-csharp level=INFO event=build:sucesso
+2026-11-20T00:01:52Z task=build-csharp level=INFO event=sucesso
+2026-11-20T00:01:52Z task=app level=INFO event=inicio
+2026-11-20T00:01:52Z task=app level=INFO event=apt-update:inicio
+2026-11-20T00:02:55Z task=app level=INFO event=apt-update:sucesso
+2026-11-20T00:02:55Z task=app level=INFO event=packages:inicio
+2026-11-20T00:02:55Z task=app level=INFO event=packages:sucesso
+2026-11-20T00:02:55Z task=app level=INFO event=dotnet-sdk:inicio
+2026-11-20T00:03:01Z task=app level=INFO event=dotnet-sdk:sucesso
+2026-11-20T00:03:01Z task=app level=INFO event=bundle:inicio
+2026-11-20T00:03:01Z task=app level=INFO event=bundle:sucesso
+2026-11-20T00:03:01Z task=app level=INFO event=reload:inicio
+2026-11-20T00:03:01Z task=app level=INFO event=reload:sucesso
+2026-11-20T00:03:01Z task=app level=INFO event=enable:inicio
+2026-11-20T00:03:02Z task=app level=INFO event=enable:sucesso
+2026-11-20T00:03:02Z task=app level=INFO event=restart:inicio
+2026-11-20T00:03:02Z task=app level=INFO event=restart:sucesso
+2026-11-20T00:03:06Z task=app level=INFO event=http_healthcheck_ok
+2026-11-20T00:03:06Z task=app level=INFO event=sucesso
+2026-11-20T00:03:06Z task=monitor level=INFO event=inicio
+2026-11-20T00:03:06Z task=monitor level=INFO event=journal-restart:inicio
+2026-11-20T00:03:06Z task=monitor level=INFO event=journal-restart:sucesso
+2026-11-20T00:03:06Z task=monitor level=INFO event=journal-flush:inicio
+2026-11-20T00:03:06Z task=monitor level=INFO event=journal-flush:sucesso
+2026-11-20T00:03:06Z task=monitor level=INFO event=reload:inicio
+2026-11-20T00:03:06Z task=monitor level=INFO event=reload:sucesso
+2026-11-20T00:03:06Z task=monitor level=INFO event=enable:inicio
+2026-11-20T00:03:06Z task=monitor level=INFO event=enable:sucesso
+2026-11-20T00:03:06Z task=monitor level=INFO event=restart:inicio
+2026-11-20T00:03:06Z task=monitor level=INFO event=restart:sucesso
+2026-11-20T00:03:09Z task=monitor level=INFO event=status:inicio
+2026-11-20T00:03:09Z task=monitor level=INFO event=status:sucesso
+2026-11-20T00:03:09Z task=monitor level=INFO event=primeira_amostra_ok
+2026-11-20T00:03:09Z task=monitor level=INFO event=sucesso
+
+PASS first-provision
+github.com: 4.149.173.80                                    -- link: ens3
+
+-- Information acquired via protocol DNS in 4.2ms.
+-- Data is authenticated: no; Data was acquired via local or encrypted transport: no
+-- Data from: network
+127.0.1.1       alertasp
+PASS create-synthetic-report
+2026-11-20T00:03:09Z task=infra level=INFO event=inicio
+2026-11-20T00:03:09Z task=infra level=INFO event=apt-update:inicio
+2026-11-20T00:03:11Z task=infra level=INFO event=apt-update:sucesso
+2026-11-20T00:03:11Z task=infra level=INFO event=apt-upgrade:inicio
+2026-11-20T00:03:12Z task=infra level=INFO event=apt-upgrade:sucesso
+2026-11-20T00:03:12Z task=infra level=INFO event=packages:inicio
+2026-11-20T00:03:12Z task=infra level=INFO event=packages:sucesso
+2026-11-20T00:03:12Z task=infra level=INFO event=hostname:inicio
+2026-11-20T00:03:12Z task=infra level=INFO event=hostname:sucesso
+2026-11-20T00:03:12Z task=infra level=INFO event=netplan-generate:inicio
+2026-11-20T00:03:12Z task=infra level=INFO event=netplan-generate:sucesso
+2026-11-20T00:03:12Z task=infra level=INFO event=netplan-apply:inicio
+2026-11-20T00:03:13Z task=infra level=INFO event=netplan-apply:sucesso
+2026-11-20T00:03:13Z task=infra level=INFO event=network-address:inicio
+2026-11-20T00:03:13Z task=infra level=INFO event=network-address:sucesso
+2026-11-20T00:03:13Z task=infra level=INFO event=network-route:inicio
+2026-11-20T00:03:13Z task=infra level=INFO event=network-route:sucesso
+2026-11-20T00:03:13Z task=infra level=INFO event=network-dns:inicio
+2026-11-20T00:03:13Z task=infra level=INFO event=network-dns:sucesso
+2026-11-20T00:03:13Z task=infra level=INFO event=sucesso
+2026-11-20T00:03:13Z task=build-csharp level=INFO event=inicio
+2026-11-20T00:03:13Z task=build-csharp level=INFO event=build:inicio
+2026-11-20T00:03:13Z task=build-csharp level=INFO event=build:sucesso
+2026-11-20T00:03:13Z task=build-csharp level=INFO event=sucesso
+2026-11-20T00:03:13Z task=app level=INFO event=inicio
+2026-11-20T00:03:13Z task=app level=INFO event=apt-update:inicio
+2026-11-20T00:03:14Z task=app level=INFO event=apt-update:sucesso
+2026-11-20T00:03:14Z task=app level=INFO event=packages:inicio
+2026-11-20T00:03:15Z task=app level=INFO event=packages:sucesso
+2026-11-20T00:03:15Z task=app level=INFO event=dotnet-sdk:inicio
+2026-11-20T00:03:15Z task=app level=INFO event=dotnet-sdk:sucesso
+2026-11-20T00:03:15Z task=app level=INFO event=stop:inicio
+2026-11-20T00:03:15Z task=app level=INFO event=stop:sucesso
+2026-11-20T00:03:15Z task=app level=INFO event=bundle:inicio
+2026-11-20T00:03:15Z task=app level=INFO event=bundle:sucesso
+2026-11-20T00:03:15Z task=app level=INFO event=reload:inicio
+2026-11-20T00:03:15Z task=app level=INFO event=reload:sucesso
+2026-11-20T00:03:15Z task=app level=INFO event=enable:inicio
+2026-11-20T00:03:15Z task=app level=INFO event=enable:sucesso
+2026-11-20T00:03:15Z task=app level=INFO event=restart:inicio
+2026-11-20T00:03:15Z task=app level=INFO event=restart:sucesso
+2026-11-20T00:03:17Z task=app level=INFO event=http_healthcheck_ok
+2026-11-20T00:03:17Z task=app level=INFO event=sucesso
+2026-11-20T00:03:17Z task=monitor level=INFO event=inicio
+2026-11-20T00:03:17Z task=monitor level=INFO event=journal-restart:inicio
+2026-11-20T00:03:18Z task=monitor level=INFO event=journal-restart:sucesso
+2026-11-20T00:03:18Z task=monitor level=INFO event=journal-flush:inicio
+2026-11-20T00:03:18Z task=monitor level=INFO event=journal-flush:sucesso
+2026-11-20T00:03:18Z task=monitor level=INFO event=reload:inicio
+2026-11-20T00:03:18Z task=monitor level=INFO event=reload:sucesso
+2026-11-20T00:03:18Z task=monitor level=INFO event=enable:inicio
+2026-11-20T00:03:18Z task=monitor level=INFO event=enable:sucesso
+2026-11-20T00:03:18Z task=monitor level=INFO event=restart:inicio
+2026-11-20T00:03:18Z task=monitor level=INFO event=restart:sucesso
+2026-11-20T00:03:21Z task=monitor level=INFO event=status:inicio
+2026-11-20T00:03:21Z task=monitor level=INFO event=status:sucesso
+2026-11-20T00:03:21Z task=monitor level=INFO event=primeira_amostra_ok
+2026-11-20T00:03:21Z task=monitor level=INFO event=sucesso
+
+PASS second-provision
+2026-11-20T00:03:21Z task=failure-test level=INFO event=inicio
+2026-11-20T00:03:21Z task=failure-test level=INFO event=unit=alertasp-monitor pid_anterior=11261 reinicios_antes=0
+2026-11-20T00:03:21Z task=failure-test level=INFO event=inject-failure:inicio
+2026-11-20T00:03:21Z task=failure-test level=INFO event=inject-failure:sucesso
+2026-11-20T00:03:29Z task=failure-test level=INFO event=recuperado unit=alertasp-monitor pid_novo=11337 reinicios_depois=1
+2026-11-20T00:03:29Z task=failure-test level=INFO event=sucesso
+2026-11-20T00:03:29Z task=failure-test level=INFO event=inicio
+2026-11-20T00:03:29Z task=failure-test level=INFO event=unit=alertasp-app pid_anterior=11077 reinicios_antes=0
+2026-11-20T00:03:29Z task=failure-test level=INFO event=inject-failure:inicio
+2026-11-20T00:03:29Z task=failure-test level=INFO event=inject-failure:sucesso
+2026-11-20T00:03:35Z task=failure-test level=INFO event=recuperado unit=alertasp-app pid_novo=11405 reinicios_depois=1
+2026-11-20T00:03:35Z task=failure-test level=INFO event=sucesso
+Nov 20 00:03:35 alertasp alertasp-simulation[11441]: 2026-11-20T00:03:35Z source=simulation level=ALERT event=threshold_exceeded metric=cpu usage_pct=100 threshold_pct=85
+Nov 20 00:03:35 alertasp alertasp-simulation[11441]: 2026-11-20T00:03:35Z source=simulation level=ALERT event=threshold_exceeded metric=memory usage_pct=100 threshold_pct=85
+Nov 20 00:03:35 alertasp alertasp-simulation[11441]: 2026-11-20T00:03:35Z source=simulation level=ALERT event=threshold_exceeded metric=disk usage_pct=100 threshold_pct=90
+Evidência criada. Revise IPs, nomes e logs antes de publicar: /tmp/alertasp-vm-evidence.txt
+
+PASS pre-reboot-validation
